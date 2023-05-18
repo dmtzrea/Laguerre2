@@ -5,9 +5,24 @@
 Her = function(X_s, deg, type){
   ### Computing Hermite polynomials
   ### These are the terms in each variable up to the specified degree, without cross-products
+  ### IF A FACTOR IS GIVEN AS THE SECOND ENTRY OF X_s, THEN IT COMPUTES THE CORRESPONDING DESIGN
+  ### MATRIX BY REPEATING THE COMPUTATIONS THE NUMBER OF UNIQUE VALUES IN THE FACTOR.
   Her = c()
-  for(i in 1:dim(X_s)[2]){
-    Her1 = polys(X_s[,i], which = type[i], normalized = TRUE, n = deg)
+  if(!(dim(X_s)[2] %in% c(1,2))){print('Matrix X_s must have one or two columns. The second column
+                                       must be a discrete variable')}
+  else if(dim(X_s)[2] == 1){
+    Her1 = polys(X_s[,1], which = type[1], normalized = TRUE, n = deg)
+    Her = cbind(Her, Her1)
+  }else{
+    ### NOTE: TYPE ONLY VARIES FROM ONE ITERATION TO THE OTHER IF THE CONTINUOUS COVARIATE IN X_s
+    ### IS DRAWN FROM DISTRIBUTIONS OF DIFFERENT SUPPORTS DEPENDING ON THE VALUE OF
+    ### THE DISCRETE COVARIATE
+
+    # COMPUTE MODEL MATRIX FROM FACTOR IN X_s
+    factor = as.factor(X_s[,2])
+    dummy = model.matrix(~ factor - 1)
+  for(i in 1:length(unique(X_s[,2]))){
+    Her1 = polys(X_s[,1], which = type[i], normalized = TRUE, n = deg)*dummy[, i]
     #for (k in 1:(deg+1)){
     #Remember the factor of 5 here
     #Her1[, k] = 5*EQL::hermite(X_s[,i], k-1, prob=FALSE)/sqrt((sqrt(pi)*2^(k-1)*factorial(k-1)))
@@ -15,7 +30,10 @@ Her = function(X_s, deg, type){
 
     Her = cbind(Her, Her1)
   }
+  }
 
+  # WE WONT USE THIS FOR NOW. ONLY CROSS PRODUCTS OF DISCRETE WITH CONTINUOUS VARIABLES FOR NOW
+  if(0==1){
   ###Generating cross-products
   if(dim(X_s)[2]>1){
     Her2 = c()
@@ -30,6 +48,7 @@ Her = function(X_s, deg, type){
       Her2=rbind(Her2,prov)
     }
     Her = Her2
+  }
   }
 
 

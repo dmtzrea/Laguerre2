@@ -1,0 +1,32 @@
+starting worker pid=19728 on localhost:11183 at 12:08:13.926
+starting worker pid=20968 on localhost:11183 at 12:08:14.100
+starting worker pid=7320 on localhost:11183 at 12:08:14.363
+starting worker pid=20624 on localhost:11183 at 12:08:14.545
+starting worker pid=18304 on localhost:11183 at 12:08:14.747
+starting worker pid=21760 on localhost:11183 at 12:08:14.926
+starting worker pid=1864 on localhost:11183 at 12:08:15.128
+starting worker pid=20984 on localhost:11183 at 12:08:15.302
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+Execution halted
+or reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+Execution halted
+Execution halted
+Execution halted
+starting worker pid=17704 on localhost:11562 at 13:29:08.269
+starting worker pid=11160 on localhost:11562 at 13:29:08.452
+starting worker pid=6568 on localhost:11562 at 13:29:08.631
+starting worker pid=16752 on localhost:11562 at 13:29:08.814
+starting worker pid=14092 on localhost:11562 at 13:29:09.008
+starting worker pid=16920 on localhost:11562 at 13:29:09.219
+starting worker pid=17616 on localhost:11562 at 13:29:09.399
+starting worker pid=12180 on localhost:11562 at 13:29:09.576
