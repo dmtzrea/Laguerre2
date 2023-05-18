@@ -32,6 +32,8 @@ graph = function(fit){
   s = as.matrix(seq(from=min(X[,2]), to=max(X[,2]), by=0.01))
   #s_smooth = (exp(Her(s, deg = deg, type=type)%*%H)/exp(1))*sqrt(laguerre_var(fit$theta, fit$theta_tilde,fit$quantile))
   data = as.data.frame(cbind(X[,2],X_s, sigma,X%*%beta, Y,Delta))
+
+  if(dim(X_s)[2] == 2){
   colnames(data) = c("x", "x_s", "factor", "sigma", "quantile", "Y", "Delta")
   data2 = as.data.frame(cbind(s))
   colnames(data2) = c("s")
@@ -41,6 +43,18 @@ graph = function(fit){
 
     #print(ggplot2::ggplot(data2, ggplot2::aes_string(x = "s", y = "s_smooth")) + ggplot2::geom_point() + ggplot2::geom_line(color="green") +
      #       ggplot2::ggtitle("sigma(x) smooth"))
+  }else if(dim(X_s)[2] == 1){
+    colnames(data) = c("x", "x_s", "sigma", "quantile", "Y", "Delta")
+    data2 = as.data.frame(cbind(s))
+    colnames(data2) = c("s")
+    if(dim(X_s)[2] %in% c(1, 2)){
+      print(ggplot2::ggplot(data, ggplot2::aes_string(x = "x", y = "sigma")) + ggplot2::geom_point() + ggplot2::geom_line(color="orange") +
+              ggplot2::ggtitle("sigma(x)"))
+
+      #print(ggplot2::ggplot(data2, ggplot2::aes_string(x = "s", y = "s_smooth")) + ggplot2::geom_point() + ggplot2::geom_line(color="green") +
+      #       ggplot2::ggtitle("sigma(x) smooth"))
+    }
+  }else(print(paste0("Homoscedastic model. No Sigma function was computed. The constant variance is: ", laguerre_var(fit$theta, fit$theta_tilde,fit$quantile))))
   }
   print(ggplot2::ggplot(data, ggplot2::aes_string(x = "x", y = "Y", colour = as.factor(Delta))) + ggplot2::geom_point() +
           ggplot2::geom_line(data=data, ggplot2::aes_string(x = "x", y = "quantile"), color="black") +
