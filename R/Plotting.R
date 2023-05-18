@@ -54,7 +54,9 @@ graph = function(fit){
       #       ggplot2::ggtitle("sigma(x) smooth"))
 
   }else(print('X_s has wrong dimension'))
-  }else(print(paste0("Homoscedastic model. No Sigma function was computed. The constant variance is: ", laguerre_var(fit$theta, fit$theta_tilde,fit$quantile))))
+  }else(print(paste0("Homoscedastic model. No Sigma function was computed. The constant variance is: ", laguerre_var(fit$theta, fit$theta_tilde,fit$quantile)))
+        data = as.data.frame(cbind(X[,2],X%*%beta, Y,Delta))
+        colnames(data) = c("x", "quantile", "Y", "Delta"))
 
   print(ggplot2::ggplot(data, ggplot2::aes_string(x = "x", y = "Y", colour = as.factor(Delta))) + ggplot2::geom_point() +
           ggplot2::geom_line(data=data, ggplot2::aes_string(x = "x", y = "quantile"), color="black") +
