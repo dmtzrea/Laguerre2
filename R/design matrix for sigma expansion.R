@@ -30,6 +30,11 @@ Her = function(X_s, deg, type){
 
     Her = cbind(Her, Her1)
   }
+    temp = c()
+    for(i in 1:(deg + 1)){
+      temp = cbind(temp, Her[,i], Her[,i+deg+1])
+    }
+    Her = temp
   }
 
   # WE WONT USE THIS FOR NOW. ONLY CROSS PRODUCTS OF DISCRETE WITH CONTINUOUS VARIABLES FOR NOW
