@@ -38,7 +38,7 @@ graph = function(fit){
   colnames(data) = c("x", "x_s", "factor", "sigma", "quantile", "Y", "Delta")
   data2 = as.data.frame(cbind(s))
   colnames(data2) = c("s")
-    print(ggplot2::ggplot(data, ggplot2::aes_string(x = "x", y = "sigma", group = "factor")) + ggplot2::geom_point() + ggplot2::geom_line(color="orange") +
+    print(ggplot2::ggplot(data, ggplot2::aes_string(x = "x", y = "sigma", group = "factor")) + ggplot2::geom_point() + ggplot2::geom_line(ggplot2::aes_string(color = "factor")) +
             ggplot2::ggtitle("sigma(x)"))
 
     #print(ggplot2::ggplot(data2, ggplot2::aes_string(x = "s", y = "s_smooth")) + ggplot2::geom_point() + ggplot2::geom_line(color="green") +
