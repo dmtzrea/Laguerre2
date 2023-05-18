@@ -37,7 +37,7 @@ laguerre_estimator_het <- function(m,m_tilde,H,X,X_s=0,type,Y,Delta,tau,starting
   ##If no heteroskedasticity, use laguerre_estimator
   if(deg==0){
     est = laguerre_estimator(m,m_tilde,X,Y,Delta,tau,starting_beta=starting_beta,trials=trials)
-    return(list("objective"=est$objective,"beta"=est$beta,"theta"=est$theta,"theta_tilde"=est$theta_tilde, "H"=1))
+    return(list("objective"=est$objective,"beta"=est$beta,"theta"=est$theta,"theta_tilde"=est$theta_tilde, "H"=1, "quantile" = tau))
   }
 
   ##Compute initial estimate for Beta

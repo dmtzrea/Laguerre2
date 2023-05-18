@@ -15,6 +15,7 @@ graph = function(fit){
   link = fit$link
   type = fit$type
   deg = fit$deg
+  if(!is.null(X_s)){
   Her = Her(X_s, deg=deg, type=type)
   if(link == "exp"){
     sigma = exp(Her%*%H)/exp(1)
@@ -33,7 +34,6 @@ graph = function(fit){
   #s_smooth = (exp(Her(s, deg = deg, type=type)%*%H)/exp(1))*sqrt(laguerre_var(fit$theta, fit$theta_tilde,fit$quantile))
   data = as.data.frame(cbind(X[,2],X_s, sigma,X%*%beta, Y,Delta))
 
-  if(exists("X_s")){
   if(dim(X_s)[2] == 2){
   colnames(data) = c("x", "x_s", "factor", "sigma", "quantile", "Y", "Delta")
   data2 = as.data.frame(cbind(s))
