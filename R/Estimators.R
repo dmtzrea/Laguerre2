@@ -42,8 +42,8 @@ laguerre_estimator_het <- function(m,m_tilde,H,X,X_s=0,type,Y,Delta,tau,starting
 
   ##Compute initial estimate for Beta
 
-  beta_no_lag=laguerre_estimator(0,0,X,Y,Delta,tau,starting_beta=starting_beta,trials=trials)$beta
-
+  #beta_no_lag=laguerre_estimator(0,0,X,Y,Delta,tau,starting_beta=starting_beta,trials=trials)$beta
+   beta_no_lag = starting_beta
   if (1==1){
     grid <- matrix(runif(trials*(H)),nrow=trials)
     H_no_lag = pi*as.matrix(grid[,1:(H)])
