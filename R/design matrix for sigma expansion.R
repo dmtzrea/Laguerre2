@@ -85,8 +85,8 @@ polys = function(x, which, normalized = TRUE, n){
     leg4 <- cbind(rep(1,length(x)), stats::poly(x,degree=n))
   }
 
-  if(which == "Chevyshev"){
-    leg4coef <- orthopolynom::chevyshev.s.polynomials(n=n, normalized=normalized)
+  if(which == "Chebyshev"){
+    leg4coef <- orthopolynom::chebyshev.s.polynomials(n=n, normalized=normalized)
     leg4 <- as.matrix(as.data.frame(orthopolynom::polynomial.values(polynomials=leg4coef,
                                                                     x=x)))
   }
