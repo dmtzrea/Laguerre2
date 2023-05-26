@@ -78,7 +78,7 @@ polys = function(x, which, normalized = TRUE, n){
   if(which == "Legendre"){
     leg4coef <- orthopolynom::legendre.polynomials(n=n, normalized=normalized)
     leg4 <- as.matrix(as.data.frame(orthopolynom::polynomial.values(polynomials=leg4coef,
-                                                                    x=scaleX(x,u=-1,v=1))))
+                                                                    x=x)))
   }
 
   if(which == "orth"){
