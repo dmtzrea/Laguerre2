@@ -91,6 +91,12 @@ polys = function(x, which, normalized = TRUE, n){
                                                                     x=x)))
   }
 
+  if(which == "Jacobi"){
+    leg4coef <- orthopolynom::jacobi.g.polynomials(n=n, p = 3, q = 2, normalized=normalized)
+    leg4 <- as.matrix(as.data.frame(orthopolynom::polynomial.values(polynomials=leg4coef,
+                                                                    x=x)))
+  }
+
   colnames(leg4) = 1:(n+1)
   return(leg4)
 }
