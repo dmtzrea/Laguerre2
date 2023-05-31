@@ -50,7 +50,7 @@
 #'Y<- pmin(T,C)
 #'
 #'Delta <- as.numeric(T==Y)
-#'estimation = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)$beta
+#'estimation = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)
 #'beta_estimated = estimation$beta
 #'
 laguerre_estimator_het <- function(m,m_tilde,H,X,X_s=0,type,Y,Delta,tau,starting_beta=FALSE,trials=32, verbose = 1, link="exp") {
