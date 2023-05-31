@@ -22,6 +22,36 @@
 #' @param verbose Controls for output during optimization. If 0, no output is printed. If 1, a progress bar is shown indicating progress. If 2, a message is shown if an error occured during a trial. If 3, both progress bar and error alert are shown.
 #' @param link The link function in sigma = link(orthogonal expansion). Options are "exp" for an exponential link, "quad" for a quadratic link, or a custom link function. A custom argument must be a list of two functions. The first entry is the link function, and the second entry is its derivative.
 #' @export
+#' @examples
+#' m = 2
+#' m_tilde = 2
+#' H = 4
+#' type = c('Hermite')
+#' link = 'exp'
+#' tau  <- 0.5
+#'min = 0
+#'max = 7
+#'n = 200
+#'
+#'beta <- c(2,1)
+#'
+#'epsilon_raw=rnorm(n, mean=0, sd=1) - qnorm(tau, mean= 0 , sd=1)
+#'x     <- rnorm(n,mean=0,sd=1)
+#'X     <- matrix(0,ncol=2,nrow=n)
+#'X[,1] <- 1
+#'X[,2] <- x
+#'X_s = as.matrix(X[,2])
+#'epsilon <- (0.2+2*(X[,2]-0.5)^2)*epsilon_raw
+#'
+#'T     <- X%*%beta+epsilon
+#'
+#'C     <- runif(n,min=min,max=max)
+#'
+#'Y<- pmin(T,C)
+#'
+#'Delta <- as.numeric(T==Y)
+#'beta = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)$beta
+#'
 laguerre_estimator_het <- function(m,m_tilde,H,X,X_s=0,type,Y,Delta,tau,starting_beta=FALSE,trials=32, verbose = 1, link="exp") {
   ## Compute Initial value for beta
   deg = H

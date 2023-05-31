@@ -56,3 +56,34 @@ negative parts of the error density, as described in the paper by Alexander Krei
 The parameter H represents the order of the series expansion for sigma, the heteroskedasticity function of the
 regression model. Current options for this orthogonal expansion are Hermite, Laguerre and Legendre polynomials.
 }
+\examples{
+m = 2
+m_tilde = 2
+H = 4
+type = c('Hermite')
+link = 'exp'
+tau  <- 0.5
+min = 0
+max = 7
+n = 200
+
+beta <- c(2,1)
+
+epsilon_raw=rnorm(n, mean=0, sd=1) - qnorm(tau, mean= 0 , sd=1)
+x     <- rnorm(n,mean=0,sd=1)
+X     <- matrix(0,ncol=2,nrow=n)
+X[,1] <- 1
+X[,2] <- x
+X_s = as.matrix(X[,2])
+epsilon <- (0.2+2*(X[,2]-0.5)^2)*epsilon_raw
+
+T     <- X\%*\%beta+epsilon
+
+C     <- runif(n,min=min,max=max)
+
+Y<- pmin(T,C)
+
+Delta <- as.numeric(T==Y)
+beta = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)$beta
+
+}
