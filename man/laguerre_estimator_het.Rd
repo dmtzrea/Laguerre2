@@ -84,6 +84,7 @@ C     <- runif(n,min=min,max=max)
 Y<- pmin(T,C)
 
 Delta <- as.numeric(T==Y)
-beta = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)$beta
+estimation = laguerre_estimator_het(m,m_tilde,H,X,X_s,type, Y, Delta, tau,trials=32, verbose=1,link=link)$beta
+beta_estimated = estimation$beta
 
 }
